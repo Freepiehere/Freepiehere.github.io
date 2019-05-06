@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Map, TileLayer, Marker, Popup, GeoJSON } from 'react-leaflet';
 import statesData from "./components/us-states";
+import { ReactLeafletSearch } from 'react-leaflet-search';
 import './App.css';
 
 //Add search bar
@@ -18,9 +19,6 @@ class App extends Component {
 
   componentDidMount() {
     this.getStateCrime();
-    this.getCountyCrime();
-    console.log(this.state.County_Crime)
-    console.log(this.state.State_Crime);
   }
 
   getStateCrime = _ => {
@@ -111,8 +109,8 @@ class App extends Component {
     const { State_Crime } = this.state.State_Crime;
     const { County_Crime } = this.state.County_Crime;
     console.log(County_Crime);
-    
-    
+//    <ReactLeafletSearch 
+//          position="topleft" />
     return (
       //Point of attack for switching between state and county dispalys:
       //statesData value. 
@@ -140,6 +138,8 @@ class App extends Component {
             data={statesData} 
             style={this.style}
             onEachFeature={this.onEachFeature} />
+          
+          
         </Map>
         
       </div>
