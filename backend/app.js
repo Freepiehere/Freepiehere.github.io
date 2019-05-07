@@ -6,7 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var countyRouter = require('./routes/county-api');
+//var countyRouter = require('./routes/county-api');
 var app = express();
 
 var mysql = require('mysql');
@@ -33,7 +33,7 @@ connection.connect(function(err){
 });
 
 require('./routes/html-routes')(app,connection);
-require('./routes/county-api')
+require('./routes/county-api')(app);
 //app.listen(PORT, () => {
 //    console.log(`App running on port ${PORT}`);
 //});
@@ -50,7 +50,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/County_Crime', countyRouter);
+//app.use('/County_Crime', countyRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
