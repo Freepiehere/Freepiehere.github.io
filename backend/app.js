@@ -21,18 +21,28 @@ app.use(function(req, res, next) {
 
 var config = require('./config/config');
 
-const connection = mysql.createConnection({
+const state_connection = mysql.createConnection({
     host: config.host,
     user: config.user,
     password: config.password,
-    database: config.database
+    database: config.state_database
 });
 
-connection.connect(function(err){
-    (err)? console.log(err): console.log(connection);
+const county_connection = mysql.createConnection({
+  host: config.host,
+  user: config.user,
+  password: config.password,
+  database: config.county_database
 });
 
-require('./routes/html-routes')(app,connection);
+
+state_connection.connect(function(err){
+    (err)? console.log(err): console.log(state_connection);
+});
+
+
+require('./routes/county-routes')(app,county_connection);
+require('./routes/html-routes')(app,state_connection);
 require('./routes/county-api')(app);
 //app.listen(PORT, () => {
 //    console.log(`App running on port ${PORT}`);

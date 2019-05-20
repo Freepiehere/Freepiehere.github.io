@@ -2,5 +2,6 @@
     "host": "localhost",
     "user": "root",
     "password": "WorldCla$$1",
-    "database": "stscrime"
+    "state_database": "stscrime",
+    "county_database": "agency_crime"
 }
